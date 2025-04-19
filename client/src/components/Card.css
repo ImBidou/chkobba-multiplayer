@@ -1,0 +1,87 @@
+/* client/src/components/Card.css */
+
+/* Base Card Styles */
+.card { /* Keep size, border, position, etc. */
+  border: 1px solid black; width: 80px; height: 112px; margin: 3px; display: inline-flex;
+  flex-direction: column; justify-content: space-between; align-items: center;
+  border-radius: 5px; position: relative; background-color: white;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.2); user-select: none; overflow: hidden; vertical-align: top;
+}
+
+/* Default Face Styles */
+.card .hearts, .card .dineri { color: red; }
+.card .clubs, .card .spades { color: black; }
+
+.card-face { /* Keep styles for text layout */
+    display: flex; flex-direction: column; justify-content: space-between;
+    align-items: center; width: 100%; height: 100%; position: absolute;
+    top: 0; left: 0; background-color: white; opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+.card-value { font-size: 14px; font-weight: bold; padding: 4px; line-height: 1; }
+.card-value.top-left { align-self: flex-start; }
+.card-value.bottom-right { align-self: flex-end; transform: rotate(180deg); }
+.card-suit-icon { font-size: 24px; flex-grow: 1; display: flex; align-items: center; justify-content: center; }
+
+/* Card Back Div (base style - no theme image here) */
+.card-back {
+  display: none; width: 100%; height: 100%; position: absolute; top: 0; left: 0;
+  background-color: #607d8b; /* Fallback color if image fails */
+  background-size: cover; background-repeat: no-repeat; background-position: center;
+  border-radius: inherit; opacity: 0; transition: opacity 0.3s ease-in-out;
+}
+
+/* Show Back / Hide Face when .face-down */
+.card.face-down .card-face { opacity: 0; pointer-events: none; }
+.card.face-down .card-back { display: block; opacity: 1; }
+
+/* --- Theme-Specific Card Back Backgrounds (REMOVED) --- */
+/* Remove lines like: */
+/* .card.theme-classic .card-back { background-image: url(...); } */
+/* .card.theme-dark .card-back { background-image: url(...); } */
+
+/* --- (Optional) Theme-Specific Face TEXT Styles (Keep if desired) --- */
+/* Example: Change background/text color for dark theme text faces */
+.card.theme-dark .card-face { background-color: #37474f; color: #eceff1; }
+.card.theme-dark.hearts .card-face, .card.theme-dark.dineri .card-face { color: #ff8a80; }
+.card.theme-dark.clubs .card-face, .card.theme-dark.spades .card-face { color: #b0bec5; }
+
+.card.theme-classic .card-back { background-color: #b0bec5; }
+.card.theme-dark .card-back { background-color: #263238; }
+.card.theme-minimalist .card-back { background-color: #eceff1; }
+
+.card .card-face { background-color: white; color: black; } /* Default face */
+.card.theme-dark .card-face { background-color: #37474f; color: #eceff1; }
+.card .hearts, .card .diamonds { color: red; } /* Default red suits */
+.card .clubs, .card .spades { color: black; } /* Default black suits */
+.card.theme-dark.hearts .card-face, .card.theme-dark.diamonds .card-face { color: #ff8a80; } /* Dark theme red */
+.card.theme-dark.clubs .card-face, .card.theme-dark.spades .card-face { color: #b0bec5; } /* Dark theme black */
+
+
+/* --- ADD THIS RULE --- */
+/* Hide text/symbols when showing a custom face image */
+.card.has-face-image .card-face > * {
+  /* display: none; */ /* Option 1: Completely hide */
+  opacity: 0; /* Option 2: Fade out */
+  pointer-events: none;
+}
+/* Ensure face background itself is styled if using images */
+.card.has-face-image .card-face {
+  background-size: contain; /* Or cover */
+  background-repeat: no-repeat;
+  background-position: center;
+  color: transparent; /* Hide text color just in case */
+}
+/* --- END ADDED RULE --- */
+
+.card.theme-dbz .card-back { background-color: #ff9800; } /* Example: Orange fallback */
+.card.theme-odd .card-back { background-color: #ff9800; }
+.card.theme-rourou .card-back { background-color: #ff9800; }
+.card.theme-circus .card-back { background-color: #ff9800; }
+.card.theme-odd .card-back { background-color: #ff9800; }
+
+/* Selected Card Style */
+.card.selected { /* Keep this */
+  border: 2px solid #2196F3; box-shadow: 0 0 8px #2196F3; transform: translateY(-5px); transition: transform 0.1s ease-out;
+}
+

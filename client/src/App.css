@@ -1,0 +1,559 @@
+/* client/src/App.css */
+
+/* Basic Reset & Body */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f0f0f0; /* Light gray background */
+  color: #333;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* General Layout */
+.game-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.opponent-area, .player-area {
+  width: 80%;
+  max-width: 700px; /* Max width for larger screens */
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 15px;
+  background-color: #ffffff; /* White background for player areas */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease; /* Smooth transition for active player */
+}
+
+.opponent-area {
+  background-color: #f8f8f8; /* Slightly different background for opponent */
+  border-color: #ddd;
+}
+
+.player-area {
+   background-color: #fff;
+}
+
+/* Active Player Highlighting */
+.opponent-area.active-player, .player-area.active-player {
+  border-color: #4CAF50; /* Green border */
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); /* Subtle green glow */
+}
+
+.opponent-area h3, .player-area h3 {
+    margin-top: 0;
+    color: #1a237e; /* Dark blue heading */
+}
+.opponent-area p, .player-area p {
+    font-size: 0.95em;
+    color: #555;
+    margin: 5px 0;
+}
+
+
+.table-area {
+  width: 90%;
+  max-width: 800px;
+  margin-bottom: 20px;
+  border: 1px solid #a0a0a0;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #dcedc8; /* Lighter green background for table */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.table-area h3 {
+    text-align: center;
+    margin-top: 0;
+    color: #33691e; /* Darker green */
+}
+.table-area > p { /* Style deck count */
+    text-align: center;
+    font-style: italic;
+    color: #555;
+    margin-top: 10px;
+}
+
+.game-message {
+    text-align: center;
+    margin: 15px 0;
+    font-weight: bold;
+    min-height: 1.5em; /* Prevent layout shifts */
+    font-size: 1.1em;
+    color: #0d47a1; /* Darker blue message */
+}
+
+/* Buttons */
+button {
+    padding: 8px 15px;
+    margin: 5px;
+    cursor: pointer;
+    background-color: #1976d2; /* Blue buttons */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.95em;
+    transition: background-color 0.2s ease;
+}
+button:hover:not(:disabled) {
+    background-color: #1565c0; /* Darker blue on hover */
+}
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    background-color: #9e9e9e; /* Gray when disabled */
+}
+.player-area button { /* Play card button specifics */
+    margin-top: 10px;
+    background-color: #43a047; /* Green play button */
+}
+.player-area button:hover:not(:disabled) {
+    background-color: #388e3c;
+}
+
+.tie-decision button {
+     background-color: #ffa000; /* Orange tie buttons */
+}
+.tie-decision button:hover:not(:disabled) {
+     background-color: #f57c00;
+}
+
+.round-scores-detailed button, .final-scores button {
+     background-color: #607d8b; /* Slate gray */
+}
+.round-scores-detailed button:hover:not(:disabled), .final-scores button:hover:not(:disabled) {
+     background-color: #455a64;
+}
+
+
+/* Counters */
+.player-captured-counter, .opponent-captured-counter {
+    text-align: right;
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+
+
+/* --- HomePage Styles --- */
+.homepage {
+  display: flex; /* Enable flexbox */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center content vertically */
+  min-height: 90vh; /* Ensure it takes height */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.homepage .content-card { /* Add a wrapper card for centering content */
+   background-color: #3c4043; /* Slightly lighter dark card */
+   padding: 30px 40px;
+   border-radius: 16px; /* More rounded */
+   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+   border: 1px solid #5f6368;
+   width: 100%;
+   max-width: 500px; /* Control max width */
+   text-align: center;
+}
+
+.homepage h1 {
+    font-size: 2.5em; /* Larger title */
+    font-weight: 800;
+    margin-bottom: 30px;
+    /* Example Gradient Text */
+    background: linear-gradient(to right, #fbbc05, #ea4335); /* Yellow to Red */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+ .homepage h2 {
+    color: #bdc1c6; /* Lighter heading color */
+    margin-top: 25px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #5f6368;
+    padding-bottom: 8px;
+    font-size: 1.4em;
+ }
+
+.homepage hr {
+    border: 0;
+    height: 1px;
+    background-color: #5f6368; /* Visible hr */
+    margin: 25px 0;
+}
+
+.homepage label {
+  display: block; /* Labels on own line */
+  font-weight: bold;
+  margin-bottom: 8px; /* Space below label */
+  color: #bdc1c6; /* Lighter label color */
+  text-align: left;
+  font-size: 1.1em;
+}
+
+.homepage input[type="text"],
+.homepage input[type="radio"] + label { /* Style text next to radio */
+    color: #e8eaed; /* Ensure light text */
+}
+
+.homepage input[type="text"],
+.homepage .join-input-button input[type="text"] { /* Target both inputs */
+  padding: 12px 15px; /* More padding */
+  border: 1px solid #5f6368;
+  border-radius: 8px;
+  background-color: #202124; /* Match body */
+  color: #e8eaed;
+  font-size: 1em;
+  width: 100%; /* Full width within container */
+  box-sizing: border-box; /* Include padding/border in width */
+  margin-bottom: 10px; /* Space below */
+}
+ .homepage .join-input-button input[type="text"] {
+     margin-bottom: 0; /* Remove bottom margin when next to button */
+ }
+
+
+/* Style score/theme selection areas */
+.homepage .score-choice,
+.homepage .theme-choice {
+    text-align: left;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+.homepage .score-choice label,
+.homepage .theme-choice label {
+    display: inline-block; /* Keep label next to radio */
+    margin-right: 15px;
+    margin-bottom: 0;
+    font-weight: normal; /* Normal weight for options */
+}
+ .homepage .score-choice input[type="radio"],
+ .homepage .theme-choice input[type="radio"] {
+      margin-right: 5px;
+      vertical-align: middle; /* Align radio with label text */
+       /* Add custom radio styles later if desired */
+  }
+
+
+/* Buttons */
+.homepage button {
+    padding: 12px 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    color: #202124; /* Dark text on light buttons */
+}
+.homepage button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    filter: brightness(1.1);
+}
+ .homepage button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+ }
+
+.homepage .create-buttons button {
+    background: linear-gradient(to right, #fbbc05, #ea4335); /* Yellow/Red Gradient */
+    margin: 5px;
+}
+.homepage .join-button {
+    background: linear-gradient(to right, #34a853, #4285f4); /* Green/Blue Gradient */
+    padding: 12px 25px !important; /* Match input height better */
+    margin-left: 10px;
+}
+
+/* Join Section Layout */
+.homepage .join-section > div { /* Target the div containing input+button */
+    display: flex;
+    align-items: center;
+}
+.homepage .join-section input {
+    flex-grow: 1; /* Allow input to take available space */
+}
+
+
+/* Status Messages */
+.status-message {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  background-color: rgba(138, 180, 248, 0.3); /* Light blue info background */
+  border: 1px solid #8ab4f8;
+  color: #e8eaed;
+}
+.error-message {
+  background-color: rgba(242, 138, 134, 0.3); /* Light red error background */
+  border-color: #f28b82;
+  color: #f28b82; /* Red text for errors */
+}
+
+/* --- End HomePage Styles --- */
+
+/* Detailed Score Table */
+.round-scores-detailed {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+.round-scores-detailed h4 {
+    margin-top: 0;
+    text-align: center;
+    color: #33691e;
+}
+.round-scores-detailed table {
+    width: 90%; /* Adjust as needed */
+    margin: 10px auto;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+.round-scores-detailed th, .round-scores-detailed td {
+    border: 1px solid #e0e0e0;
+    padding: 6px 10px;
+    text-align: left;
+}
+.round-scores-detailed th {
+    background-color: #f1f8e9; /* Light green header */
+    font-weight: bold;
+}
+.round-scores-detailed td.score-pts {
+    text-align: center;
+    font-weight: bold;
+}
+.round-scores-detailed tr.score-total td {
+    border-top: 2px solid #999;
+    font-weight: bold;
+}
+.round-scores-detailed button {
+    display: block;
+    margin: 15px auto 5px auto; /* Center button */
+}
+
+/* Final Score Display */
+.final-scores {
+     margin-top: 15px;
+     padding: 15px;
+     background-color: #e3f2fd; /* Light blue background */
+     border: 1px solid #bbdefb;
+     border-radius: 5px;
+     text-align: center;
+}
+.final-scores h4 {
+    margin-top: 0;
+    color: #0d47a1;
+}
+.final-scores p {
+    font-size: 1.1em;
+    margin: 5px 0;
+}
+.final-scores button {
+    margin-top: 15px;
+}
+
+.capture-choice-options {
+  border: 1px dashed blue;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+.capture-choice-options h4 {
+  margin-top: 0;
+  text-align: center;
+}
+.capture-option-button {
+  display: block;
+  margin: 5px auto;
+  background-color: #ff9800; 
+}
+.capture-option-button:hover {
+  background-color: #f57c00;
+}
+
+/* --- Styles for Capture Choice --- */
+.capture-choice-options {
+  border: 2px dashed #0277bd; /* Light blue dash */
+  background-color: #e1f5fe; /* Lighter blue background */
+  padding: 10px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  text-align: center;
+}
+.capture-choice-options h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #01579b;
+}
+.capture-options-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px; /* Spacing between options */
+}
+.capture-option {
+  display: inline-flex; /* Use flex to group cards in sum capture */
+  flex-direction: row;
+  padding: 5px;
+  border: 2px solid transparent; /* Border appears on hover */
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.6);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.capture-option:hover {
+  border-color: #f57c00; /* Orange border on hover */
+  background-color: rgba(255, 224, 178, 0.8);
+}
+/* Make cards within options slightly smaller? Optional */
+.capture-option .card {
+  width: 60px;
+  height: 84px; /* Maintain aspect ratio */
+  font-size: 12px; /* Smaller text */
+  margin: 1px; /* Less margin */
+  box-shadow: none; /* Remove shadow maybe */
+}
+.capture-option .card .card-value { font-size: 12px; padding: 2px;}
+.capture-option .card .card-suit-icon { font-size: 18px; }
+/* --- End Capture Choice Styles --- */
+
+
+/* --- Styles for 1v1 Game Screen Layout --- */
+.game-layout-1v1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally within the column */
+  width: 100%;
+  min-height: 95vh;
+  padding: 15px;
+  box-sizing: border-box;
+  gap: 15px; /* Space between opponent/table/player areas */
+}
+
+/* Ensure the main areas don't stretch too wide */
+.game-layout-1v1 .opponent-area,
+.game-layout-1v1 .table-area, /* Target the specific table area for 1v1 */
+.game-layout-1v1 .player-area { /* Target the specific player area for 1v1 */
+    width: 90%;
+    max-width: 700px; /* Adjust max-width as needed */
+    /* No need for margin:auto here as align-items: center handles horizontal centering */
+}
+
+/* --- End 1v1 Layout Styles --- */
+
+
+/* --- New 2v2 Grid Layout --- */
+.game-screen-grid {
+  display: grid;
+  grid-template-columns: 150px 1fr 150px; /* Left-Opponent | Table | Right-Opponent */
+  grid-template-rows: auto 1fr auto; /* Partner | Table | You */
+  grid-template-areas:
+    ". partner ."
+    "left table right"
+    ". you .";
+  width: 100%;
+  max-width: 1000px; /* Adjust max width as needed */
+  min-height: 95vh; /* Use viewport height */
+  margin: 10px auto;
+  padding: 10px;
+  box-sizing: border-box;
+  gap: 10px; /* Space between areas */
+}
+
+.partner-area { grid-area: partner; }
+.left-opponent-area { grid-area: left; }
+.table-area-grid { grid-area: table; /* Renamed from table-area */ }
+.right-opponent-area { grid-area: right; }
+.player-area-grid { grid-area: you; /* Renamed from player-area */ }
+
+/* Adjust existing player/opponent area styles if needed */
+.game-player-area { /* Common styles for all player pods */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  opacity: 0.8; /* Slightly faded when not active */
+}
+.game-player-area.active-player {
+  border-color: #4CAF50;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+  opacity: 1.0; /* Fully visible when active */
+}
+.game-player-area h3 { margin-top: 0; font-size: 1em; color: #333; }
+.game-player-area p { font-size: 0.85em; margin: 4px 0; color: #555; }
+
+/* Center table area content */
+.table-area-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center content vertically */
+  border: 1px solid #a0a0a0;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #e6f4ea; /* Light green */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.table-area-grid h3 { text-align: center; margin-top: 0; color: #33691e; }
+.table-area-grid > p { text-align: center; font-style: italic; color: #555; margin-top: 10px; }
+
+/* Team Score Display */
+.team-scores {
+    margin-top: 15px;
+    padding: 5px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+}
+
+/* Make player hand area take up more space */
+.player-area-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.player-area-grid .hand {
+    min-width: 80%; /* Ensure hand display is wide */
+    justify-content: center;
+}
+
+
+/* Ensure Table/Hand/Card components are okay */
+.table-cards { /* Center cards on table */
+    justify-content: center;
+}
+
+/* --- End 2v2 Grid Layout --- */
+
+
+/* Ensure Card.css, Hand.css, Table.css are loaded if separate */

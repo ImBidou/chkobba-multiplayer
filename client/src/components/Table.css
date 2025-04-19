@@ -1,0 +1,31 @@
+/* client/src/components/Table.css */
+.table {
+    display: flex;
+    flex-direction: column; /* Stack title above cards */
+    align-items: center;
+    padding: 10px; /* Reduced padding */
+    margin: 10px auto; /* Reduced margin */
+    background-color: #cce0cc;
+    border: 1px solid #a0a0a0;
+    border-radius: 5px;
+    min-height: 120px; /* Ensure space when empty */
+    position: relative; /* For placeholder */
+  }
+  
+  .table-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; /* Allow cards to wrap */
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+  }
+  
+   .table-placeholder {
+      color: #555;
+      font-style: italic;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  }
