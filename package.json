@@ -1,19 +1,22 @@
-
 {
   "name": "chkobba-multiplayer",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js", 
+  "main": "index.js",
   "scripts": {
-    "server": "npm run dev --prefix server",    
-        "client": "npm start --prefix client",    
-    "dev": "concurrently \"npm run server\" \"npm run client\"", 
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "npm run dev --prefix server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "npm run build --prefix client",
+    "deploy": "gh-pages -d client/build"
+    
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^8.2.2" 
+    "concurrently": "^8.2.2",
+    "gh-pages": "^6.3.0"
   }
 }
