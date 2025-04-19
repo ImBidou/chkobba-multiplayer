@@ -9,15 +9,25 @@ const roomManager = require('./roomManager'); // Uses updated roomManager with m
 // Require specific game classes as needed
 const Game_1v1 = require('./game/Game_1v1'); // Assuming renamed file
 const Game_2v2 = require('./game/Game_2v2'); // Uses 2v2 class
-
+FRONTEND_URL = 'https://chkobba-multiplayer-static.onrender.com/'
 const PORT = process.env.PORT || 3001;
+const frontendURL = process.env.FRONTEND_URL; // Get URL from environment
+
+console.log(`SERVER: Frontend URL from env: ${frontendURL}`); // Add logging
+
+if (!frontendURL) {
+    console.error("SERVER: ERROR! FRONTEND_URL environment variable is not set.");
+    // You might want to exit or provide a default ONLY for local dev here
+}
+
+
 
 const app = express();
 const httpServer = http.createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://chkobba-multiplayer-static.onrender.com", // Your React app's origin
+    origin: frontendURL, // Your React app's origin
     methods: ["GET", "POST"]
   }
 });
