@@ -3,7 +3,7 @@
 import { io } from 'socket.io-client';
 
 // Ensure this matches the address/port your server is running on
-const SERVER_URL = 'http://localhost:3001';
+const SERVER_URL = 'https://chkobba-multiplayer.onrender.com/';
 
 export const socket = io(SERVER_URL, {
   autoConnect: false // Important: connect manually when needed
