@@ -17,7 +17,7 @@ const httpServer = http.createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:3000", // Your React app's origin
+    origin: "https://chkobba-multiplayer.onrender.com/", // Your React app's origin
     methods: ["GET", "POST"]
   }
 });
