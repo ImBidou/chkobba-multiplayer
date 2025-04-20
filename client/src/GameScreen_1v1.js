@@ -17,10 +17,9 @@ function GameScreen_1v1() {
     const [isConnected, setIsConnected] = useState(socket.connected);
     const [myPlayerId, setMyPlayerId] = useState(null);
     const [myName, setMyName] = useState("You");
-    const [myTeamName, setMyTeamName] = useState(null);
     const [playerHand, setPlayerHand] = useState([]);
     const [myGameData, setMyGameData] = useState({ capturedCount: 0, chkobbas: 0 });
-    const [partner, setPartner] = useState(null);
+    const [, setPartner] = useState(null);
     const [opponents, setOpponents] = useState([]);
     const [tableCards, setTableCards] = useState([]);
     const [currentPlayerId, setCurrentPlayerId] = useState(null);

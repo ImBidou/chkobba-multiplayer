@@ -79,6 +79,7 @@
 .card.theme-rourou .card-back { background-color: #ff9800; }
 .card.theme-circus .card-back { background-color: #ff9800; }
 .card.theme-odd .card-back { background-color: #ff9800; }
+.card.theme-fauna .card-back { background-color: #ff9800; }
 
 /* Selected Card Style */
 .card.selected { /* Keep this */

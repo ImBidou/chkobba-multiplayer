@@ -31,7 +31,7 @@ function GameScreen_2v2() {
     const [isGameOver, setIsGameOver] = useState(false);
     const [gameMessage, setGameMessage] = useState(`Joining room ${roomId}...`);
     const [awaitingTieDecision, setAwaitingTieDecision] = useState(false);
-    const [myTieDecision, setMyTieDecision] = useState(null);
+    const [, setMyTieDecision] = useState(null);
     const [selectedPlayerCardId, setSelectedPlayerCardId] = useState(null);
     const [imReadyForNextRound, setImReadyForNextRound] = useState(false);
     const [isAwaitingCaptureChoice, setIsAwaitingCaptureChoice] = useState(false);
@@ -85,7 +85,7 @@ function GameScreen_2v2() {
         const handleDisconnect = (reason) => { setIsConnected(false); setHasLoadedInitialState(false); setTimeout(() => { navigate('/'); }, 3000); };
         const handleGameStart = (initialState) => { if (!initialState) return; console.log('Received gameStart (2v2)'); updateGameState(initialState); setHasLoadedInitialState(true); };
         const handleGameStateUpdate = (newState) => { if (!newState) return; console.log('Received gameStateUpdate (2v2)'); updateGameState(newState); if(!hasLoadedInitialState) setHasLoadedInitialState(true); };
-        const handlePlayerJoined = (data) => { if (!hasLoadedInitialState && myPlayerId && data?.players) { const others = data.players.filter(p => p.id !== myPlayerId); /* Need logic to set partner/opponents based on teams */ }};
+        const handlePlayerJoined = (data) => { if (!hasLoadedInitialState && myPlayerId && data?.players);};
         const handlePlayerLeft = (data) => { setOpponents(o => o.filter(p => p.id !== data.socketId)); setPartner(p => p?.id === data.socketId ? null : p); };
         const handleGameEnd = (data) => { setIsGameOver(true); setGameMessage(data.message || "Game Over!"); setHasLoadedInitialState(true); };
         const handleGameError = (data) => { console.error('Game Error:', data); setGameMessage(`Error: ${data.message}`); setSelectedPlayerCardId(null); setIsAwaitingCaptureChoice(false); setIsAwaitingExactMatchChoice(false); };
@@ -105,7 +105,6 @@ function GameScreen_2v2() {
     const handlePlayerCardSelect = (cardId) => { if (canMyPlayerAct) setSelectedPlayerCardId(cardId); };
     const handlePlaySelectedCard = () => { if (selectedPlayerCardId && canMyPlayerAct) { emitPlayCard({ roomId, cardId: selectedPlayerCardId }); setSelectedPlayerCardId(null); } };
     const handleReadyForNextRound = () => { if (isRoundOver && !isGameOver && !awaitingTieDecision && !imReadyForNextRound) { socket.emit('readyForNextRound', { roomId }); setImReadyForNextRound(true); } };
-    const handleTieDecision = (decision) => { /* Needs Team Logic Review */ };
     const handleSubmitCaptureChoice = (chosenCombination) => { if (isAwaitingCaptureChoice && chosenCombination) { const ids = chosenCombination.map(c => c.id); socket.emit('submitCaptureChoice', { roomId, chosenCombinationIds: ids }); setIsAwaitingCaptureChoice(false); setCaptureOptions([]); setPlayedCardForChoice(null); } };
     const handleSubmitExactMatchChoice = (chosenCard) => { if (isAwaitingExactMatchChoice && chosenCard) { socket.emit('submitExactMatchChoice', { roomId, chosenCardId: chosenCard.id }); setIsAwaitingExactMatchChoice(false); setExactMatchOptions([]); setPlayedCardForChoice(null); } };
     const [copySuccess, setCopySuccess] = useState(false);
@@ -120,18 +119,19 @@ function GameScreen_2v2() {
     // Clicking "Copy Code" writes the roomId to clipboard silently
     const handleCopyCode = () => {
       navigator.clipboard.writeText(roomId);
-      // Optionally, provide subtle feedback (e.g., change button text)
+      setCopySuccess(true);
+      
     };
 
     return (
-        <div className="game-layout">
-          <p>Connected, waiting for game details...</p>
-          <p>Room Code: <strong>{roomId}</strong></p>
-          <button onClick={handleCopyCode}>{copySuccess ? 'Copied!' : 'Copy Room Code'}
-          </button>
-        </div>
-      );
-    }
+      <div className="game-layout">
+        <p>Connected, waiting for game details...</p>
+        <p>Room Code: <strong>{roomId}</strong></p>
+        <button onClick={handleCopyCode}>{copySuccess ? 'Copied!' : 'Copy Room Code'}
+        </button>
+      </div>
+    );
+  }
 
     // *** Declare derived variables HERE, before return ***
     const currentId = myPlayerId || socket.id;

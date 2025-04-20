@@ -2,7 +2,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
 // Define available themes (make sure 'classic' exists)
-const THEMES = ['classic', 'dbz', 'rourou', 'odd', 'circus']; // Example theme names
+const THEMES = ['classic', 'dbz', 'rourou', 'odd', 'circus', 'fauna']; // Example theme names
 const DEFAULT_THEME = 'classic';
 
 // Create context object
