@@ -108,7 +108,7 @@ function GameScreen_2v2() {
     const handleTieDecision = (decision) => { /* Needs Team Logic Review */ };
     const handleSubmitCaptureChoice = (chosenCombination) => { if (isAwaitingCaptureChoice && chosenCombination) { const ids = chosenCombination.map(c => c.id); socket.emit('submitCaptureChoice', { roomId, chosenCombinationIds: ids }); setIsAwaitingCaptureChoice(false); setCaptureOptions([]); setPlayedCardForChoice(null); } };
     const handleSubmitExactMatchChoice = (chosenCard) => { if (isAwaitingExactMatchChoice && chosenCard) { socket.emit('submitExactMatchChoice', { roomId, chosenCardId: chosenCard.id }); setIsAwaitingExactMatchChoice(false); setExactMatchOptions([]); setPlayedCardForChoice(null); } };
-
+    const [copySuccess, setCopySuccess] = useState(false);
     // --- getWinner helper (Needs update for teams) ---
     const getWinner = () => { if (!isGameOver || !scores) return null; const teamAScore = scores['TeamA'] ?? 0; const teamBScore = scores['TeamB'] ?? 0; if (teamAScore === teamBScore) return "It's a Tie!"; const winningTeam = teamAScore > teamBScore ? 'TeamA' : 'TeamB'; return myTeamName === winningTeam ? `Your Team (${myTeamName}) Wins!` : `Team ${winningTeam} Wins!`; };
 
