@@ -124,13 +124,14 @@ function GameScreen_2v2() {
     };
 
     return (
-      <div className="game-layout">
-        <p>Connected, waiting for game details...</p>
-        <p>Room Code: <strong>{roomId}</strong></p>
-        <button onClick={handleCopyCode}>Copy Room Code</button>
-      </div>
-    );
-  }
+        <div className="game-layout">
+          <p>Connected, waiting for game details...</p>
+          <p>Room Code: <strong>{roomId}</strong></p>
+          <button onClick={handleCopyCode}>{copySuccess ? 'Copied!' : 'Copy Room Code'}
+          </button>
+        </div>
+      );
+    }
 
     // *** Declare derived variables HERE, before return ***
     const currentId = myPlayerId || socket.id;
