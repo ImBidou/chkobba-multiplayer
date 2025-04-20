@@ -17,7 +17,7 @@ const httpServer = http.createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://chkobba-multiplayer-static.onrender.com", // Your React app's origin
+    origin: "www.chkobba.io'", // Your React app's origin
     methods: ["GET", "POST"]
   }
 });
