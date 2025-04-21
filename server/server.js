@@ -17,7 +17,11 @@ const httpServer = http.createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
+<<<<<<< HEAD
     origin: "https://164.92.131.170", // Your React app's origin
+=======
+    origin: "www.chkobba.io'", // Your React app's origin
+>>>>>>> a42718fcdb98b3d83c9aafc3b29cbd0d35bee748
     methods: ["GET", "POST"]
   }
 });
