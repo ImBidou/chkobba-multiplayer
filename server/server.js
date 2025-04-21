@@ -17,7 +17,7 @@ const httpServer = http.createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://www.chkobba-.io", // 
+    origin: ["https://chkobba.io", "https://www.chkobba.io"], // You have to add both domains as origin
     methods: ["GET", "POST"]
   }
 });

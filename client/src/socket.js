@@ -3,7 +3,7 @@
 import { io } from 'socket.io-client';
 
 // Ensure this matches the address/port your server is running on
-const SERVER_URL = 'https://www.chkobba-.io.io';
+const SERVER_URL = 'https://www.chkobba.io';
 
 export const socket = io(SERVER_URL, {
   autoConnect: false // Important: connect manually when needed
